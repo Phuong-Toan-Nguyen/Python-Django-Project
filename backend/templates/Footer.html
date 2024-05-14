@@ -1,0 +1,36 @@
+{% load static %}
+
+<footer class="footer">
+    <p class="footer__logo">
+        <a href="/"><img src="{% static 'media/logos/fv_logo.png' %}" alt="SPYxFAMILY"></a>
+    </p>
+    <small class="footer__copyRight">©遠藤達哉/集英社・SPYxFAMILY製作委員会</small>
+    <p class="footer__contact">
+        <a href="/" target="_blank" style="color: black;">【 お問い合せ 】</a>
+    </p>
+    <ul class="shareLists">
+        <li class="shareLists--tw">
+            <a href="https://twitter.com/share?url=https://spy-family.net/&amp;text=TVアニメ『SPYxFAMILY』&amp;hashtags=" target="_blank">
+                <span class="hd">Twitter share</span>
+            </a>
+        </li>
+        <li class="shareLists--fb">
+            <a href="https://www.facebook.com/share.php?u=https://spy-family.net/" target="_blank">
+                <span class="hd">Facebook share</span>
+            </a>
+        </li>
+        <li class="shareLists--line">
+            <a href="https://line.me/R/msg/text/?TVアニメ『SPYxFAMILY』 https://spy-family.net/" target="_blank">
+                <span class="hd">LINE share</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="bnrLists">
+
+        {% for donor in donors %}
+            <li>
+                <a href="{{donor.Url}}" target="_blank"><img src="{{donor.FaviconDonors.url}}" alt=""></a>
+            </li>
+        {% endfor %}
+    </ul>
+</footer>

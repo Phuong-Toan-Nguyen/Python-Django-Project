@@ -1,0 +1,82 @@
+{% load static %}
+<header>
+    <div class="container-fluid-config">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <!--Carousel-->
+                <div id="carousel-Header" class="carousel slide" data-ride="carousel" >
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-Header" data-slide-to="0" class="active"></li>      
+                        <li data-target="#carousel-Header" data-slide-to="1"></li>
+                        <li data-target="#carousel-Header" data-slide-to="2"></li>
+                        <li data-target="#carousel-Header" data-slide-to="3"></li>
+                    </ol>
+                
+                    <!-- Wrapper for slides -->
+                
+                    <div class="carousel-inner"><!--img 1200x630-->
+                        <div class="item active">
+                            {% for x in carousels  %}
+                                {% if x.Carousel_id == 1 %}
+                                    <img src = "{{x.Img.url}}" alt="{{x.alt}}" class="carousel-img"/><!--phải la truy van object, khong phải query set-->
+                                    {{break}}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="carousel-caption">      
+                                
+                            </div>
+                        </div>
+                    
+                        <div class="item">        
+                            {% for x in carousels  %}
+                                {% if x.Carousel_id == 2 %}
+                                    <img src = "{{x.Img.url}}" alt="{{x.alt}}" class="carousel-img"/>
+                                    {{break}}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="carousel-caption">        
+                                    
+                            </div>        
+                        </div>
+                    
+                        <div class="item">        
+                            {% for x in carousels  %}
+                                {% if x.Carousel_id == 3 %}
+                                    <img src = "{{x.Img.url}}" alt="{{x.alt}}" class="carousel-img"/>
+                                    {{break}}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="carousel-caption">        
+                                    
+                            </div>        
+                        </div>       
+
+                         <div class="item">        
+                            {% for x in carousels  %}
+                                {% if x.Carousel_id == 4 %}
+                                    <img src = "{{x.Img.url}}" alt="{{x.alt}}" class="carousel-img"/>
+                                    {{break}}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="carousel-caption">        
+                                    
+                            </div>        
+                        </div>       
+
+                    </div>
+                    
+                    <!-- Left Right Controls -->
+                
+                    <a class="left carousel-control" href="#carousel-Header" role="button" data-slide="prev">        
+                        <span class="glyphicon glyphicon-chevron-left"></span>        
+                    </a>
+                
+                    <a class="right carousel-control" href="#carousel-Header" role="button" data-slide="next">        
+                        <span class="glyphicon glyphicon-chevron-right"></span>        
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>  
+</header>

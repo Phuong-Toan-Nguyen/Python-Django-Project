@@ -1,0 +1,165 @@
+{% load static %}
+
+<!--code đổi theme và background menu-->
+<script>
+    $(document).ready(function(){
+    var themeMenu = $(".menu");
+    var themeContent = $(".content");
+    var colorMenu = ['#ffc66b','#697d73'];
+    var colorContent = ['#fcddab','#8ea99b'];
+    const MenuImage = [
+        'url(" {% static 'media\menupics\char1.png' %} ")',
+        'url(" {% static 'media\menupics\char2.png' %} ")',
+        'url(" {% static 'media\menupics\char3.png' %} ")',
+        'url(" {% static 'media\menupics\char4.png' %} ")',
+        'url(" {% static 'media\menupics\char5.png' %} ")',
+        'url(" {% static 'media\menupics\char6.png' %} ")',
+    ]
+
+    var i = 0;
+
+    function ChangeColor(){
+        /*đổi màu theme*/
+        themeMenu.css('background-color', colorMenu[i]);
+        themeContent.css('background-color', colorContent[i]);
+        i++;
+        if(i>=colorMenu.length)
+        i = 0;
+        /*đổi background menu*/
+        var pickImage = MenuImage[ Math.floor(Math.random() * MenuImage.length) ];
+        $(document).ready(function(){
+            $(".MenuBackground").css("background-image",pickImage);
+        });
+        
+    }
+    setInterval(ChangeColor,15000);/*đổi thời gian chuyển theme ở đây*/
+
+    })
+</script>
+<nav class="container-config">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <a href="/" class="Menulogo">
+                <img src = "{{Favicon.Img.url}}" alt="{{Favicon.Alt}}"/><!--phai la truy van object, khong phải query set-->
+            </a> 
+        </div>
+        <ul class="col-md-12 col-xs-12" style="list-style-type: none;">
+           
+            <li>
+                <a href="/#tNews" class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                        {% if x.id == 1 %}<!--phải la truy van object, khong phải query set-->
+                            {{x.ItemName}}
+                            {{break}}
+                        {% endif %}
+                    {% endfor %}
+                </a>
+            </li>
+            <li >
+                <a href="/#tOnAir" class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 2 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tStory" class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 3 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tStaff" class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 4 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tTrailers" class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 5 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tMusic" class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 6 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tGoods"  class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 7 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tPodcast"  class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 9 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                <a href="/#tSNS"  class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 10 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            <li>
+                {% for x in MenuItems %}
+                    {% if x.id == 11 %}
+                        <a href="{{x.Url}}"  class="listHead font-Oswald" target="_blank">
+                        {{x.ItemName}}
+                        {{break}}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                
+            </li>
+            <li>
+                <a href="/contact"  class="listHead font-Oswald" style="text-decoration : none">
+                    {% for x in MenuItems %}
+                    {% if x.id == 12 %}
+                        {{x.ItemName}}
+                        {{break}}
+                    {% endif %}
+                {% endfor %}
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</nav>
+
+<div class="MenuBackground" style="background-image: url({% static 'media\menupics\char1.png' %});"></div>
+

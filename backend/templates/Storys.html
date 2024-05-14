@@ -1,0 +1,84 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  Storys
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container">
+        <h2 class="content-title font-Oswald">STORY</h2>
+        <ul class="tStoryList">
+
+          
+          <li class="row tStoryList-items">
+            {% for Story in storyPaging %}
+              <div class="col-md-4">
+                <a href="{{Story.id}}" class="tStory-boxs">
+                    
+                    <img src="{{Story.ImgThumb.url}}">
+                    
+                    <div class="Story-title">
+                        {{Story.Title}}<br>
+                    </div>
+                </a>
+              </div>
+              {% empty %}
+              <h1 style="text-align: center;">We dont have any story yet!</h1>
+            {% endfor %}
+          </li>
+            
+        </ul>
+
+        <br><br>
+
+        <nav aria-label="Page navigation example ">
+          <div class="text-center" >
+            <ul class="pagination paginator-style" \>
+                {% if  storyPaging.has_previous %}
+                    <li class="page-item" >
+                        <a class="page-link" href="?page=1">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+              
+            {% for i in elidedPageRange|default_if_none:storyPaging.paginator.get_elided_page_range %}
+            
+                {% if storyPaging.number == i %}
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">{{i}}<span class="sr-only">(current)</span></span>
+                    </li>
+                {% else %}
+                    {% if i == storyPaging.paginator.ELLIPSIS %}
+                        <li class="page-item"><span class="page-link">{{ i }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+          
+              {% if storyPaging.has_next %}
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{storyPaging.paginator.num_pages}}">
+                          <span aria-hidden="true">&raquo;</span>
+                      </a>
+                  </li>
+              {% endif %}
+              </ul>
+          </div>
+        </nav>
+
+    </div>
+    
+
+    
+    
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,84 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  Trailers
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container">
+        <h2 class="content-title font-Oswald">TRAILER</h2>
+        <ul class="tTrailerList">
+
+          
+          <li class="row tTrailerList-items">
+            {% for trailer in trailerPaging %}
+              <div class="col-md-4">
+                <a href="{{trailer.id}}" class="tStory-boxs">
+                    
+                    <img src="{{trailer.Img.url}}">
+                    
+                    <div class="Trailer-title">
+                        {{trailer.Name}}<br>
+                    </div>
+                </a>
+              </div>
+              {% empty %}
+
+            {% endfor %}
+          </li>
+          
+            
+        </ul>
+
+        <br><br>
+
+        <nav aria-label="Page navigation example ">
+          <div class="text-center" >
+                <ul class="pagination paginator-style" \>
+                {% if trailerPaging.has_previous %}
+                  <li class="page-item" >
+                      <a class="page-link" href="?page=1">
+                          <span aria-hidden="true">&laquo;</span>
+                      </a>
+                  </li>
+                {% endif %}
+              
+                {% for i in elidedPageRange|default_if_none:trailerPaging.paginator.get_elided_page_range %}
+            
+                {% if trailerPaging.number == i %}
+                    <li class="page-item active" aria-current="page">
+                      <span class="page-link">{{i}}<span class="sr-only">(current)</span></span>
+                    </li>
+                {% else %}
+                    {% if i == trailerPaging.paginator.ELLIPSIS %}
+                      <li class="page-item"><span class="page-link">{{ i }}</span></li>
+                    {% else %}
+                      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                    {% endif %}
+
+                {% endfor %}
+          
+                 {% if trailerPaging.has_next %}
+                     <li class="page-item">
+                        <a class="page-link" href="?page={{newsPaging.paginator.num_pages}}">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                     </li>
+              {% endif %}
+              </ul>
+          </div>
+      </nav>
+    </div>
+    
+
+    
+    
+
+
+
+{% endblock %}
+
+
+

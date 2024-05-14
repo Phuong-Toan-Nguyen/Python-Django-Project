@@ -1,0 +1,79 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  Staff&Cast
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container">
+        <h2 class="content-title font-Oswald">STAFF&CAST</h2>
+        <ul class="tStaffList">
+            {% for StaffCast in StaffCastPaging %}
+            <li class="tStaffList-items">
+                <a href="{{StaffCast.Url}}" class="tNews-link" target="_blank"><!--tái sử dụng code section News-->
+                    <p class="tStaffList-history font-Oswald">
+                        {{StaffCast.Movie}}<br><small>{{StaffCast.job}}</small>
+                    </p>
+                    <img src="{{StaffCast.Img.url}}" class="title-img" >
+                    <p class="tNewsList-title">
+                        {{StaffCast.Name}}
+                    </p>
+                </a>
+            </li>
+            {% endfor %}
+    
+        </ul>
+
+        <br><br>
+
+        <nav aria-label="Page navigation example ">
+            <div class="text-center" >
+                <ul class="pagination paginator-style" \>
+                {% if  StaffCastPaging.has_previous %}
+                    <li class="page-item" >
+                        <a class="page-link" href="?page=1">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                
+                {% for i in elidedPageRange|default_if_none:StaffCastPaging.paginator.get_elided_page_range %}
+            
+                    {% if StaffCastPaging.number == i %}
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link">{{i}}<span class="sr-only">(current)</span></span>
+                        </li>
+                    {% else %}
+                        {% if i == StaffCastPaging.paginator.ELLIPSIS %}
+                            <li class="page-item"><span class="page-link">{{ i }}</span></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endif %}
+
+                {% endfor %}
+            
+                {% if StaffCastPaging.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{StaffCastPagin.paginator.num_pages}}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+    
+
+    
+    
+
+
+
+{% endblock %}
+
+
+

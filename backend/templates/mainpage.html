@@ -1,0 +1,334 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  Main-Page
+{% endblock %}
+
+{% block carousel %}
+  {% include 'carousel.html' %}
+{% endblock %}
+
+{% block content %}
+  {% load static %}
+    
+  <div class="container">
+    
+    <div id="tNews">
+      <h2 class="content-title font-Oswald">NEWS</h2>
+      <ul class="tNewsList">
+        {% for x in newsItems|slice:':4' %}
+          <li class="tNewsList-items">
+            <a href="news/{{ x.id }}" class="tNews-link">
+              <p class="tNewsList-date font-Oswald">{{ x.UpdateAt }}</p>
+              <img src="{{ x.ImgThumb.url }}" class="title-img" />
+              <p class="tNewsList-title">{{ x.Title }}</p>
+            </a>
+          </li>
+
+          {% empty %}
+          <h1 style="text-align: center;">We dont have any news yet!</h1>
+        {% endfor %}
+      </ul>
+      <p class="tNews-more font-Oswald">
+        <a href="news/" class="LinkToMoreNews">MORE NEWS</a><!-- thêm link more news chỗ này -->
+      </p>                                                                                                                                                                                                                                                         
+    </div>
+
+    <div id="tOnAir">
+      <h2 class="content-title font-Oswald">ON AIR</h2>
+      <ul class="tOnAirList">
+          {% for OnaAir in OnAirItems|slice:":5" %}
+            <li class="row tOnAirList-items">
+              <div class="col-md-5">{{OnaAir.Title}}</div>
+              <div class="col-md-3">{{OnaAir.Date}}</div>
+              <div class="col-md-4">{{OnaAir.Detail}}</div>
+            </li>
+          {% endfor %}
+      </ul>
+    </div>
+
+    <div id="tStory">
+      <h2 class="content-title font-Oswald">STORY</h2>
+      <ul class="tStoryList" style="margin-top: -5%;">
+
+        <li class="row tStoryList-items">
+          {% for Story in StoryItems|slice:":3" %}
+            <div class="col-md-4">
+              <a href="story/{{Story.id}}" class="tStory-boxs">
+                  
+                  <img src="{{Story.ImgThumb.url}}">
+                  
+                  <div class="Story-title">
+                      {{Story.Title}}<br>
+                  </div>
+              </a>
+            </div>
+            {% empty %}
+            <h1 style="text-align: center;">We dont have any story yet!</h1>
+          {% endfor %}
+        </li>
+        <li class="row tStoryList-items">
+            {% for Story in StoryItems|slice:"3:6" %}
+              <div class="col-md-4">
+                <a href="story/{{Story.id}}" class="tStory-boxs">
+                    
+                    <img src="{{Story.ImgThumb.url}}">
+                    
+                    <div class="Story-title">
+                        {{Story.Title}}<br>
+                    </div>
+                </a>
+              </div>
+              {% empty %}
+              
+
+            {% endfor %}
+        </li>
+      </ul>
+      <br><br>
+      <p class="tNews-more font-Oswald">
+          <a href="story/" class="LinkToMoreNews">MORE STORY</a>
+      </p>
+    </div>
+
+    <div id="tStaff">
+      <h2 class="content-title font-Oswald">STAFF&CAST</h2>
+      <ul class="tStaffList">
+          
+          {% for StaffCast in StaffCast|slice:":4" %}
+          <li class="tStaffList-items">
+            <a href="{{StaffCast.Url}}" class="tNews-link" target="_blank"><!--tái sử dụng code section News-->
+                <p class="tStaffList-history font-Oswald">
+                    {{StaffCast.Movie}}<br><small>{{StaffCast.job}}</small>
+                </p>
+                <img src="{{StaffCast.Img.url}}" class="title-img" >
+                <p class="tNewsList-title">
+                    {{StaffCast.Name}}
+                </p>
+            </a>
+          </li>
+          {% empty %}
+          <h1 style="text-align: center;">We dont have any info yet!</h1>
+          {% endfor %}
+
+      </ul>
+      <p class="tNews-more font-Oswald">
+          <a href="staff&cast/" class="LinkToMoreNews">MORE STAFF & CAST</a><!--thêm link more staff chỗ này-->
+      </p>
+    </div>
+
+    <div id="tTrailers">
+      <h2 class="content-title font-Oswald">TRAILERS</h2>
+      <ul class="tTrailerList" style="margin-top: -5%;">
+          <li class="row tTrailerList-items">
+            {% for trailer in trailers|slice:":3" %}
+            <div class="col-md-4">
+              <a href="trailers/{{trailer.id}}" class="tStory-boxs">
+                  
+                  <img src="{{trailer.Img.url}}">
+              
+                  <div class="Trailer-title">
+                      {{trailer.Name}}<br>
+                  </div>
+              </a>
+            </div>
+            {% empty %}
+            <h1 style="text-align: center;">We dont have any trailers yet!</h1>
+          {% endfor %}
+          </li>
+
+          <li class="row tTrailerList-items">
+            {% for trailer in trailers|slice:"3:6" %}
+            <div class="col-md-4">
+                <a href="trailers/{{trailer.id}}" class="tStory-boxs">
+                    
+                    <img src="{{trailer.Img.url}}">
+                    
+                    <div class="Trailer-title">
+                        {{trailer.Name}}
+                    </div>
+                </a>
+            </div>
+            {%empty%}
+
+            {% endfor %}
+
+          </li>
+      </ul>
+      <br><br>
+      <p class="tNews-more font-Oswald">
+          <a href="trailers/" class="LinkToMoreNews">MORE TRAILER</a><!--thêm link more trailers chỗ này-->
+      </p>
+    </div>
+
+    <div id="tMusic">
+      <h2 class="content-title font-Oswald">MUSIC</h2>
+      <ul class="tMusicList">
+          <li class="row tMusicList-items">
+            {% for music in musics|slice:":2" %}
+              <div class="col-md-6">
+                  <a href="music/{{music.id}}" class="tMusic-box">
+                      <div>
+                          <img src="{{music.Img.url}}" class="Music-thumb">
+                      </div>
+                      <div class="Music-title">
+                          {{music.Name}}
+                      </div>
+                  </a>
+              </div>
+              {%empty%}
+            {% endfor %}
+
+          </li>
+
+          <li class="row tMusicList-items">
+            {% for music in musics|slice:"2:4" %}
+              <div class="col-md-6">
+                  <a href="music/{{music.id}}" class="tMusic-box">
+                      <div>
+                          <img src="{{music.Img.url}}" class="Music-thumb">
+                      </div>
+                      <div class="Music-title">
+                          {{music.Name}}
+                      </div>
+                  </a>
+              </div>
+              {%empty%}
+            {% endfor %}
+
+          </li>
+      </ul>
+    </div>
+
+    <div id="tGoods">
+      <h2 class="content-title font-Oswald">Goods</h2>
+      <ul class="tGoodsList" style="margin-top: -10%;">
+
+          <li class="row tBluList-items">
+
+              {% for goods in goods|slice:":4" %}
+              
+                <div class="col-md-3">
+                  <a href="Goods/{{goods.id}}" class="Goods-box">
+                      <div>
+                          <img src="{{goods.Img.url}}">
+                      </div>
+                      <div class="Goods-title">
+                          {{goods.Name}}
+                      </div>
+                  </a>
+                </div>
+              
+              {% endfor %}
+             
+          </li>
+          <li class="row tBluList-items">
+
+            {% for goods in goods|slice:"4:8" %}
+            
+              <div class="col-md-3">
+                <a href="Goods/{{goods.id}}" class="Goods-box">
+                    <div>
+                        <img src="{{goods.Img.url}}">
+                    </div>
+                    <div class="Goods-title">
+                        {{goods.Name}}
+                    </div>
+                </a>
+              </div>
+            
+            {% endfor %}
+           
+          </li>
+      </ul>
+      <br><br><br>
+      <p class="tNews-more font-Oswald">
+          <a href="/Goods" class="LinkToMoreNews">MORE GOODS</a><!--thêm link more goods chỗ này-->
+      </p>
+    </div>
+
+    <div id="tPodcast">
+      <h2 class="content-title font-Oswald">PODCAST</h2>
+      <ul class="tPodcastList">
+          <li class="row tPodcast-items">
+             {% for podcast in podcasts|slice:":2" %}
+              <div class="col-md-6">
+                  <a href="{{podcast.Url}}" target="_blank" class="tPodcast-box">
+                      <div>
+                          <img src="{{podcast.Img.url}}" class="Podcast-thumb">
+                      </div>
+                      <div class="Podcast-title">
+                          {{podcast.Name}}
+                      </div>
+                  </a>
+              </div>
+              {%empty%}
+
+              {% endfor %}
+          </li>
+          <li class="row tPodcast-items">
+            {% for podcast in podcasts|slice:"2:4" %}
+             <div class="col-md-6">
+                 <a href="{{podcast.Url}}" target="_blank" class="tPodcast-box">
+                     <div>
+                         <img src="{{podcast.Img.url}}" class="Podcast-thumb">
+                     </div>
+                     <div class="Podcast-title">
+                         {{podcast.Name}}
+                     </div>
+                 </a>
+             </div>
+             {%empty%}
+
+             {% endfor %}
+          </li>
+      </ul>
+    </div>
+
+    <div id="tSNS">
+      <h2 class="content-title font-Oswald">SNS</h2>
+      <ul class="tMusicList">
+        <li class="row tMusicList-items">
+          {% for sn in sns|slice:":2" %}
+            <div class="col-md-6">
+                <a href="{{sn.Url}}" target="_blank" class="tMusic-box">
+                    <div>
+                        <img src="{{sn.Img.url}}" class="Music-thumb">
+                    </div>
+                    <div class="Music-title">
+                        {{sn.Name}}
+                    </div>
+                </a>
+            </div>
+            {%empty%}
+          {% endfor %}
+
+        </li>
+
+        <li class="row tMusicList-items">
+          {% for sn in sns|slice:"2:4" %}
+            <div class="col-md-6">
+                <a href="{{sn.Url}}" target="_blank" class="tMusic-box">
+                    <div>
+                        <img src="{{sn.Img.url}}" class="Music-thumb">
+                    </div>
+                    <div class="Music-title">
+                        {{sn.Name}}
+                    </div>
+                </a>
+            </div>
+            {%empty%}
+          {% endfor %}
+
+        </li>
+      </ul>
+    </div>
+
+  
+
+
+
+
+  </div>
+
+{% endblock content %}

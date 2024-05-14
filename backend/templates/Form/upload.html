@@ -1,0 +1,52 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Upload Form
+{% endblock title %}
+
+{% block content %}
+{% load static %}
+
+<center class="font-Oswald">
+    <h1>Get in touch</h1>
+    <br>
+    {% if username %}
+
+        <center>
+            <h2>Thanks {{username}}</h2>
+            <p>We received your email and will respond shortly..</p>
+            <p class="tNews-more font-Oswald">
+                <a href="/contact" class="LinkToMoreNews">Back to Contact</a>
+            </p>
+        </center>
+        
+    {% else %}
+
+        <form class="Contact" action="" method=POST>
+            {% csrf_token %}<!--security token-->
+            
+            {{ form.as_p }}
+
+            <input type="submit" name="" value="Submit" class="btn btn-Dark">
+            
+        </form>
+        
+        <br><br>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-100">
+                    
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6733.831361903572!2d106.80526605606578!3d10.875161838738348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d8aed3808359%3A0xe933ad142813142e!2zNDUgVMOibiBM4bqtcCwgxJDDtG5nIEhvw6AsIETEqSBBbiwgQsOsbmggRMawxqFuZywgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1696821509879!5m2!1sen!2s" width="80%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                      
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+
+</center>
+
+
+
+{% endblock content %}

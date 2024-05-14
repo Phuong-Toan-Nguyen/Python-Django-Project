@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style_Good.css' %}">
+    <link rel="stylesheet" href="{% static 'styleFooter.css' %}">
+    <link rel="stylesheet" href="{% static 'style_music.css' %}">
+    <link rel="stylesheet" href="{% static 'BootStrap/css/bootstrap.css' %}">
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+     <script src="{% static 'BootStrap/js/bootstrap.js' %}"></script>
+    <title>Goods Detail</title>
+</head>
+<body>
+    
+    <div class="container-fluid-config">
+        <div class="containerOK">
+            <div class="contentDIV">
+                <a href="/Goods" class="BackButtonGoods">BACK</a>
+                <h1 class="contentH1 font-Oswald">
+                    GOODS
+                </h1>
+                <div class="contentDIV">
+                    <div class="content">
+                        <h2 class="content_item_h2 font-Oswald">
+                            <p>{{goods.Name}}</p>
+                        </h2>
+                        <div class="content-detail">
+                            <div class="content-img">
+                                <img src="{{goods.Img.url}}" alt="">
+                            </div>
+                            <p class="para font-Oswald">
+                                {{goods.SellDate}}<br>
+                                {{goods.Price}}<br>
+                                {{goods.Description}}
+                                {{goods.Category}}<br><br>
+                                お問合せ：<br>
+                                <a href="{{goods.Url}}" target="_blank">{{goods.Url}}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

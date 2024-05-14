@@ -1,0 +1,32 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  News Detail
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+    <div class="container">
+        <h1 class="content-title font-Oswald">
+            MUSIC
+        </h1>
+        <div class="contentDIV">
+            <div class="content">
+                <h2 class="content_item font-Oswald">
+                    <span class="content_item_date">{{musics.Type}}</span>
+                    <span class="content_item_text">{{musics.Name}}</span>
+                </h2>
+                <div class="content_text">
+                    <p>
+                        <img src="{{musics.Img.url}}" class="img_news">
+                    </p>
+                    <p class="font-Oswald">
+                        {{musics.Content|safe}}
+                    </p>
+                </div>
+            </div>
+            <a href="/#tMusic" class="LinkToMoreNews">BACK</a>
+    </div>
+
+{% endblock content %}

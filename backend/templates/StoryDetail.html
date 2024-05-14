@@ -1,0 +1,26 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  News Detail
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+    <div class="container">
+        <div>
+            <h2 class="content-title">STORY</h2>
+            <div class="font_text News_img">
+                <img src="{{storys.ImgThumb.url}}" class="img_news"><br>
+                <p class="color_red bold">{{storys.SubTitle}}</p>
+                <p class="margin_top">{{storys.Content|safe}}</p>
+            </div>
+            <br /><br />
+            <a href="/story" class="LinkToMoreNews margin_middle">BACK</a><br /><br /><br />
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+

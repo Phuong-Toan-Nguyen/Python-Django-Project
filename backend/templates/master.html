@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'BootStrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'styleFooter.css' %}">
+    <link rel="stylesheet" href="{% static 'style_music.css' %}">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'BootStrap/js/bootstrap.js' %}"></script>
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body>
+
+    {% comment %} {% include 'LoginNavBar.html' %} {% endcomment %}
+    
+    
+    {% block carousel %}{% endblock carousel %}
+    
+    <div class="container-fluid">
+      <div class="row">
+          <!--Menu-->
+          <header class="menu col-md-2 col-sm-2 col-xs-0">
+            {% include 'menu.html' %}
+          </header> 
+
+          <!--Content-->
+          <div class="content col-md-10 col-sm-10 col-xs-12">
+              {% block content %}{% endblock content %}
+              {% include 'Footer.html' %}
+          </div>
+      </div>
+    </div>
+
+  </body>
+</html>

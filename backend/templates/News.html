@@ -1,0 +1,80 @@
+{% extends 'master.html' %}
+
+{% block title %}
+  News
+{% endblock %}
+
+{% block content %}
+    {% load static %}
+    <div class="container">
+        <h2 class="content-title font-Oswald">NEWS</h2>
+        <ul class="tNewsList">
+            {% for x in newsPaging %}
+            <li class="tNewsList-items">
+                <a href="{{ x.id }}" class="tNews-link">
+                <p class="tNewsList-date font-Oswald">{{ x.UpdateAt }}</p>
+                <img src="{{ x.ImgThumb.url }}" class="title-img" />
+                <p class="tNewsList-title">{{ x.Title }}</p>
+                </a>
+            </li>
+            {% empty %}
+
+            <h1>We dont have any news yet!</h1>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <br><br>
+
+    <nav aria-label="Page navigation example ">
+        <div class="text-center" >
+            <ul class="pagination paginator-style" \>
+            {% if  newsPaging.has_previous %}
+                <li class="page-item" >
+                    <a class="page-link" href="?page=1">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            
+            {% for i in elidedPageRange|default_if_none:newsPaging.paginator.get_elided_page_range %}
+            
+                {% if newsPaging.number == i %}
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">{{i}}<span class="sr-only">(current)</span></span>
+                    </li>
+                {% else %}
+                    {% if i == newsPaging.paginator.ELLIPSIS %}
+                        <li class="page-item"><span class="page-link">{{ i }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+        
+            {% if newsPaging.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{newsPaging.paginator.num_pages}}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            </ul>
+        </div>
+      </nav>
+            
+
+            
+            
+    
+
+    
+    
+
+
+
+{% endblock %}
+
+
+
